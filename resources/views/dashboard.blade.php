@@ -1,32 +1,57 @@
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+<body class="store-page">
 
-<body>
-<div class="card">
-    <header>
-        <h1>Dashboard</h1>
+    <!-- Navbar -->
+    <nav class="store-navbar">
+        <a href="{{ route('dashboard') }}" class="store-logo">
+            Hade<span>.</span>
+        </a>
 
-        <form action="{{ url('/logout') }}" method="POST">
-            @csrf
-            <button type="submit">Logout</button>
-        </form>
-    </header>
+        <div class="store-nav-links">
+            <a href="#beranda" class="active">Home</a>
+            <a href="#kategori">Categories</a>
+            <a href="#produk">Products</a>
+        </div>
 
-    <h2>
-        Welcome to {{ config('app.name', 'Laravel') }}
-        {{ Auth::user()->username}}!
-    </h2>
+        <div class="store-nav-actions">
+            @auth
+                <span class="store-user">
+                    Halo, {{ Auth::user()->full_name ?? Auth::user()->username }}
+                </span>
 
-    <p>This page can only be accessed after logging in.</p>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="store-login-btn">
+                        Logout
+                    </button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="store-login-btn">
+                    Login
+                </a>
+            @endauth
+        </div>
+    </nav>
+    
+    <!-- Footer -->
+    <footer class="store-footer">
+        <a href="#beranda" class="store-logo">
+            Hade<span>.</span>
+        </a>
 
-    <p>
-        Username: {{ Auth::user()->username }}
-    </p>
-</div>
+        <p>Find what suits you.</p>
+
+        <span>© {{ date('Y') }} Assalammualaikum. All rights reserved.</span>
+    </footer>
+
 </body>
+</html>

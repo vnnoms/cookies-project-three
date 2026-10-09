@@ -3,10 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
-// Halaman utama menuju login
 Route::redirect('/', '/login');
 
-// Route untuk pengguna yang belum login
+// Login page 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])
         ->name('login');
@@ -14,7 +13,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
 });
 
-// Route untuk pengguna yang sudah login
+// Dashboard, need to login first to access this page
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])
         ->name('dashboard');
