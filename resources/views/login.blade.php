@@ -1,38 +1,57 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Styles / Scripts -->
-         <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-        </head>
-        <body>
-            <div class="card">
-                <header>
-                    <h1>Dashboard</h1>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body>
+    <div class="card">
+        <header>
+            <h1>Login</h1>
+        </header>
 
-                    <form action="{{ url('/logout') }}" method="POST">
-                        @csrf
-                        <button type="submit">Logout</button>
-                    </form>
-                </header>
+    <div class="card">
+    <p>Sign in to access your dashboard.</p>
 
-                <h2>
-                    Welcome to {{ config('app.name', 'Laravel') }}
-                    {{ Auth::user()->full_name}}!
-                </h2>
+    @if (session('error'))
+        <div class="error">
+            {{ session('error') }}
+        </div>
+    @endif
 
-                <p>This page can only be accessed after logging in.</p>
+    <form action="{{ url('/login') }}" method="POST">
+        @csrf
 
-                <p>
-                    Username: {{ Auth::user()->username }}
-                </p>
-            </div>
-        </body>
-        </html>
+        <label for="username">Username</label>
+        <input
+            type="text"
+            id="username"
+            name="username"
+            value="{{ old('username') }}"
+            required
+        >
+
+        <label for="password">Password</label>
+        <input
+            type="password"
+            id="password"
+            name="password"
+            required
+        >
+
+        <button type="submit">Login</button>
+    </form>
+
+        <p>Sign in to access your dashboard.</p>
+
+    </div>
+</body>
+<footer>
+    <p>This page can only be accessed after logging in.</p>
+    <p>&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.</p>
+</footer>
+</html>
