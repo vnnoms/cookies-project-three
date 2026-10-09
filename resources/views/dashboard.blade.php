@@ -17,9 +17,11 @@
         </a>
 
         <div class="store-nav-links">
-            <a href="#beranda" class="active">Home</a>
+            <a href="{{ route('dashboard') }}">Home</a>
             <a href="#kategori">Categories</a>
-            <a href="#produk">Products</a>
+            <a href="{{ route('products.index') }}">Products</a>
+        </div>
+
         </div>
 
         <div class="store-nav-actions">

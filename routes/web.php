@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ItemController;
 
 Route::redirect('/', '/login');
 
@@ -21,3 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
 });
+
+Route::get('/products', [ItemController::class, 'index'])
+    ->name('products.index');
