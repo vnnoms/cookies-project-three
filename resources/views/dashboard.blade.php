@@ -20,7 +20,7 @@
 
     <h2>
         Welcome to {{ config('app.name', 'Laravel') }}
-        {{ Auth::user()->full_name }}!
+        {{ Auth::user()->username}}!
     </h2>
 
     <p>This page can only be accessed after logging in.</p>
