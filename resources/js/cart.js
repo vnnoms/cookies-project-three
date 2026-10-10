@@ -1,8 +1,4 @@
-
 document.addEventListener('DOMContentLoaded', function () {
-    // =========================
-    // CART CALCULATOR
-    // =========================
     const checkboxes = document.querySelectorAll('.cart-check');
     const selectedItems = document.getElementById('selected-items');
     const subtotalElement = document.getElementById('cart-subtotal');
@@ -17,22 +13,24 @@ document.addEventListener('DOMContentLoaded', function () {
         let count = 0;
 
         checkboxes.forEach(function (checkbox) {
-            if (!checkbox.checked) return;
-
             const card = checkbox.closest('.cart-card');
-            if (!card) return;
+
+            if (!card || !checkbox.checked) return;
 
             const price = Number(card.dataset.price) || 0;
             const quantityInput = card.querySelector('.cart-quantity');
-            const quantity = Math.max(0, Number(quantityInput?.value) || 0);
+            const quantity = Math.max(
+                0,
+                Number(quantityInput.value) || 0
+            );
 
             total += price * quantity;
             count += quantity;
         });
 
-        if (selectedItems) selectedItems.textContent = count;
-        if (subtotalElement) subtotalElement.textContent = formatRupiah(total);
-        if (totalElement) totalElement.textContent = formatRupiah(total);
+        selectedItems.textContent = count;
+        subtotalElement.textContent = formatRupiah(total);
+        totalElement.textContent = formatRupiah(total);
     }
 
     checkboxes.forEach(function (checkbox) {
@@ -44,6 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     calculateTotal();
+    console.log('KALKULATOR JALAN');
+});
+
 
     // =========================
     // AUTO-FADE NOTIFICATION
@@ -58,4 +59,3 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 500);
         }, 5000);
     });
-});

@@ -110,14 +110,10 @@
 
                                     <input
                                         type="number"
-                                        id="quantity-{{ $id }}"
-                                        name="quantity"
                                         class="cart-quantity"
                                         value="{{ $item['quantity'] }}"
                                         min="1"
-                                        required
                                     >
-
                                     <button
                                         type="submit"
                                         class="cart-btn cart-btn-primary"
