@@ -1,6 +1,7 @@
 @import './login.css';
 @import './dashboard.css';
 @import './products.css';
+@import './cart.css';
 
 * {
     box-sizing: border-box;
