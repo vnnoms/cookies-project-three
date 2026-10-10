@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - Hade Store</title>
+    <title>Products - Hade</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="store-page">
@@ -26,6 +26,18 @@
     </nav>
 
     <main class="store-products">
+        
+    @if (session('success'))
+        <p class="alert alert-success auto-dismiss">
+            {{ session('success') }}
+        </p>
+    @endif
+
+    @if (session('error'))
+        <p class="alert alert-error auto-dismiss">
+            {{ session('error') }}
+        </p>
+    @endif
         <h1>Our Products</h1>
         <p>Find the perfect stationery for your everyday needs.</p>
 

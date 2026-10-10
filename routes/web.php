@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CartController;
 
 Route::redirect('/', '/login');
 
@@ -25,3 +26,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/products', [ItemController::class, 'index'])
     ->name('products.index');
+
+Route::post('/cart/{item}', [
+    \App\Http\Controllers\CartController::class,
+    'add'
+])->name('cart.add');
