@@ -1,0 +1,151 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+    padding: 32px 18px;
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+}
+
+.header {
+    padding: 32px;
+    margin-bottom: 24px;
+    color: white;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    border-radius: 18px;
+}
+
+.eyebrow {
+    margin-bottom: 12px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: #bfdbfe;
+}
+
+.header h1 {
+    margin-bottom: 12px;
+    font-size: clamp(26px, 4vw, 36px);
+}
+
+.header p:last-child {
+    line-height: 1.7;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+}
+
+.panel {
+    padding: 24px;
+    margin-bottom: 22px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 5px 18px #0f172a0a;
+}
+
+.panel h2 {
+    margin-bottom: 18px;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 18px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.product:last-child {
+    border-bottom: none;
+}
+
+.product h3 {
+    margin-bottom: 8px;
+}
+
+.product p {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+button {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    filter: brightness(0.92);
+}
+
+#items {
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    padding: 12px 0;
+    line-height: 1.7;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.empty {
+    padding: 20px 0;
+    color: #64748b;
+}
+
+#total {
+    padding-top: 18px;
+    border-top: 2px solid #e2e8f0;
+}
+
+.cart-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.secondary {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.danger {
+    background: #dc2626;
+}
+
+.response-panel pre {
+    padding: 16px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    background: #f8fafc;
+    border-radius: 10px;
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+}

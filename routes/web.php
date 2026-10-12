@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\StatelessCartController;
 
 Route::redirect('/', '/login');
 
@@ -41,3 +42,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/cart/{item}', [CartController::class, 'remove'])
         ->name('cart.remove');
 });
+
+Route::get('/stateless-cart', [StatelessCartController::class, 'index'])
+    ->name('stateless-cart.index');
+
+Route::post('/stateless-cart/add', [StatelessCartController::class, 'add'])
+    ->name('stateless-cart.add');
+
+Route::post('/stateless-cart/update', [StatelessCartController::class, 'update'])
+    ->name('stateless-cart.update');
