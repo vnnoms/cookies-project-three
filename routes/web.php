@@ -7,15 +7,18 @@ use App\Http\Controllers\CartController;
 
 Route::redirect('/', '/login');
 
-// Login page 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])
         ->name('login');
 
     Route::post('/login', [AuthController::class, 'login']);
+
+    Route::get('/register', [AuthController::class, 'showRegister'])
+        ->name('register');
+
+    Route::post('/register', [AuthController::class, 'register']);
 });
 
-// Dashboard, need to login first to access this page
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])
         ->name('dashboard');
@@ -23,15 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
 
-    // Products
     Route::get('/products', [ItemController::class, 'index'])
         ->name('products.index');
 
-    // Categories
-    Route::get('/categories', [CategoryController::class, 'index'])
-        ->name('categories.index');
-
-    // Cart
     Route::get('/cart', [CartController::class, 'index'])
         ->name('cart.index');
 

@@ -54,6 +54,11 @@
                 </button>
             </form>
 
+            <p>
+                Don't have an account?
+                <a href="{{ route('register') }}">Create an account</a>
+            </p>
+
             <p class="login-footer">
                 Enter your credentials to continue.
             </p>

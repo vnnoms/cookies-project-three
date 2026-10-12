@@ -2,6 +2,7 @@
 @import './dashboard.css';
 @import './products.css';
 @import './cart.css';
+@import './register.css';
 
 * {
     box-sizing: border-box;
