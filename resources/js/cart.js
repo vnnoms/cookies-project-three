@@ -1,5 +1,5 @@
+
 document.addEventListener('DOMContentLoaded', function () {
-    const checkboxes = document.querySelectorAll('.cart-check');
     const selectedItems = document.getElementById('selected-items');
     const subtotalElement = document.getElementById('cart-subtotal');
     const totalElement = document.getElementById('cart-total');
@@ -12,43 +12,49 @@ document.addEventListener('DOMContentLoaded', function () {
         let total = 0;
         let count = 0;
 
-        checkboxes.forEach(function (checkbox) {
-            const card = checkbox.closest('.cart-card');
-
-            if (!card || !checkbox.checked) return;
-
-            const price = Number(card.dataset.price) || 0;
+        document.querySelectorAll('.cart-card').forEach(function (card) {
+            const checkbox = card.querySelector('.cart-check');
             const quantityInput = card.querySelector('.cart-quantity');
+
+            if (!checkbox || !quantityInput || !checkbox.checked) {
+                return;
+            }
+
+            const price = Number(card.dataset.price);
             const quantity = Math.max(
                 0,
                 Number(quantityInput.value) || 0
             );
 
-            total += price * quantity;
+            total += (Number.isFinite(price) ? price : 0) * quantity;
             count += quantity;
         });
 
-        selectedItems.textContent = count;
-        subtotalElement.textContent = formatRupiah(total);
-        totalElement.textContent = formatRupiah(total);
+        if (selectedItems) {
+            selectedItems.textContent = count;
+        }
+
+        if (subtotalElement) {
+            subtotalElement.textContent = formatRupiah(total);
+        }
+
+        if (totalElement) {
+            totalElement.textContent = formatRupiah(total);
+        }
     }
 
-    checkboxes.forEach(function (checkbox) {
+    document.querySelectorAll('.cart-check').forEach(function (checkbox) {
         checkbox.addEventListener('change', calculateTotal);
     });
 
     document.querySelectorAll('.cart-quantity').forEach(function (input) {
         input.addEventListener('input', calculateTotal);
+        input.addEventListener('change', calculateTotal);
     });
-
     calculateTotal();
-    console.log('KALKULATOR JALAN');
-});
 
+    console.log('Kalkulator keranjang berhasil diinisialisasi.');
 
-    // =========================
-    // AUTO-FADE NOTIFICATION
-    // =========================
     document.querySelectorAll('.auto-dismiss').forEach(function (notification) {
         setTimeout(function () {
             notification.style.transition = 'opacity 0.5s ease';
@@ -59,3 +65,4 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 500);
         }, 5000);
     });
+});

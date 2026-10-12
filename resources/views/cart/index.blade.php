@@ -51,6 +51,14 @@
 
         @php
             $cart = $cart ?? session('cart', []);
+
+            $initialTotal = 0;
+            $initialCount = 0;
+
+            foreach ($cart as $item) {
+                $initialTotal += (float) $item['price'] * (int) $item['quantity'];
+                $initialCount += (int) $item['quantity'];
+            }
         @endphp
 
         @if (count($cart) > 0)
@@ -110,10 +118,14 @@
 
                                     <input
                                         type="number"
+                                        id="quantity-{{ $id }}"
+                                        name="quantity"
                                         class="cart-quantity"
                                         value="{{ $item['quantity'] }}"
                                         min="1"
+                                        required
                                     >
+
                                     <button
                                         type="submit"
                                         class="cart-btn cart-btn-primary"
@@ -152,19 +164,19 @@
 
                     <div class="cart-summary-row">
                         <span>Selected Items</span>
-                        <span id="selected-items">0</span>
+                        <span id="selected-items">{{ $initialCount }}</span>
                     </div>
 
                     <div class="cart-summary-row">
                         <span>Subtotal</span>
-                        <span id="cart-subtotal">Rp0</span>
+                        <span id="cart-subtotal">Rp{{ number_format($initialTotal, 0, ',', '.') }}</span>
                     </div>
 
                     <div class="cart-summary-row cart-summary-total">
                         <span>Total</span>
-                        <span id="cart-total">Rp0</span>
+                        <span id="cart-total">Rp{{ number_format($initialTotal, 0, ',', '.') }}</span>
                     </div>
-
+                    
                     <p class="cart-summary-note">
                         The total is calculated from the products you select.
                         Checkout is not available yet.

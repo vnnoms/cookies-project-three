@@ -22,20 +22,25 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
+
+    // Products
+    Route::get('/products', [ItemController::class, 'index'])
+        ->name('products.index');
+
+    // Categories
+    Route::get('/categories', [CategoryController::class, 'index'])
+        ->name('categories.index');
+
+    // Cart
+    Route::get('/cart', [CartController::class, 'index'])
+        ->name('cart.index');
+
+    Route::post('/cart/{item}', [CartController::class, 'add'])
+        ->name('cart.add');
+
+    Route::patch('/cart/{item}', [CartController::class, 'update'])
+        ->name('cart.update');
+
+    Route::delete('/cart/{item}', [CartController::class, 'remove'])
+        ->name('cart.remove');
 });
-
-Route::get('/products', [ItemController::class, 'index'])
-    ->name('products.index');
-
-// Shopping Cart
-Route::get('/cart', [CartController::class, 'index'])
-    ->name('cart.index');
-
-Route::post('/cart/{item}', [CartController::class, 'add'])
-    ->name('cart.add');
-
-Route::patch('/cart/{item}', [CartController::class, 'update'])
-    ->name('cart.update');
-
-Route::delete('/cart/{item}', [CartController::class, 'remove'])
-    ->name('cart.remove');
