@@ -52,7 +52,7 @@
 
         <p>Find what suits you.</p>
 
-        <span>© {{ date('Y') }} Assalammualaikum. All rights reserved.</span>
+        <span>© {{ date('Y') }} Hade. All rights reserved.</span>
     </footer>
 
 </body>

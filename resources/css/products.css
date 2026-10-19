@@ -44,7 +44,7 @@
     color: #762d3c;
 }
 
-.store-login-btn {
+.store-registry-btn {
     padding: 11px 22px;
     background: #762d3c;
     color: white;
@@ -53,7 +53,7 @@
     transition: background 0.2s ease;
 }
 
-.store-login-btn:hover {
+.store-registry-btn:hover {
     background: #57202c;
 }
 

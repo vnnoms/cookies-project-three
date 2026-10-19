@@ -15,14 +15,23 @@
         </a>
 
         <div class="store-nav-links">
-            <a href="{{ route('products.index') }}">Home</a>
+            <a href="{{ route('dashboard') }}">Home</a>
             <a href="#categories">Categories</a>
             <a href="{{ route('products.index') }}" class="active">Products</a>
         </div>
 
         <div class="store-nav-actions">
-            <a href="{{ route('login') }}" class="store-login-btn">Login</a>
-        </div>
+            <a href="{{ route('cart.index') }}" class="store-cart-link">
+                <span class="store-cart-icon">🛒</span>
+                <span class="store-cart-count">{{ session('cart') ? count(session('cart')) : 0 }}</span>
+            </a>
+
+            @auth
+                <form action="{{ route('logout') }}" method="POST" class="store-registry-form">
+                    @csrf
+                    <button type="submit" class="store-registry-btn">Logout</button>
+                </form>
+            @endauth
     </nav>
 
     <main class="store-products">
@@ -76,7 +85,7 @@
 
         <p>Find what suits you.</p>
 
-        <span>© {{ date('Y') }} Hade Store. All rights reserved.</span>
+        <span>© {{ date('Y') }} Hade. All rights reserved.</span>
     </footer>
 
 </body>
