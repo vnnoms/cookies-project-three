@@ -45,7 +45,7 @@ async function add(id) {
 
 async function recalculate() {
     if (Object.keys(cart).length === 0) {
-        alert('Keranjang kosong.');
+        alert('Cart is empty.');
         return;
     }
 
@@ -69,7 +69,7 @@ function render(data) {
     if (data.items.length === 0) {
         const empty = document.createElement('p');
         empty.className = 'empty';
-        empty.textContent = 'Keranjang masih kosong.';
+        empty.textContent = 'Cart is still empty';
         container.appendChild(empty);
     }
 
