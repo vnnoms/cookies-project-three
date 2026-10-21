@@ -24,7 +24,7 @@ class RoleController extends Controller
 
         return back()->with(
             'status',
-            'Role berhasil diperbarui.'
+            'Role has been updated successfully.'
         );
     }
 }

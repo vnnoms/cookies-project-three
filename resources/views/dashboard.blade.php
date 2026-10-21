@@ -26,6 +26,8 @@
 
         <div class="store-nav-actions">
             @auth
+                <p>Username: {{ Auth::user()->username }}</p>
+                <p>Role: {{ Auth::user()->role }}</p>
                 <span class="store-user">
                     Halo, {{ Auth::user()->full_name ?? Auth::user()->username }}
                 </span>

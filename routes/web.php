@@ -6,6 +6,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\StatelessCartController;
 use App\Http\Controllers\RoleController;
+use App\Models\User;
 
 Route::redirect('/', '/login');
 
@@ -53,6 +54,17 @@ Route::post('/stateless-cart/add', [StatelessCartController::class, 'add'])
 Route::post('/stateless-cart/update', [StatelessCartController::class, 'update'])
     ->name('stateless-cart.update');
 
-Route::patch('/admin/users/{user}/role', [RoleController::class, 'update'])
-    ->middleware(['auth', 'can:manage-roles'])
-    ->name('admin.users.role.update');
+Route::get('/admin/users', function () {
+    return view('users.index', [
+        'users' => User::select('id', 'username', 'role')
+            ->orderBy('id')
+            ->get(),
+    ]);
+})->middleware(['auth', 'can:manage-roles'])
+  ->name('admin.users.index');
+
+Route::patch('/admin/users/{user}/role', [
+    RoleController::class,
+    'update'
+])->middleware(['auth', 'can:manage-roles'])
+  ->name('admin.users.role.update');
