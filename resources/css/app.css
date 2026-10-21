@@ -3,6 +3,7 @@
 @import './products.css';
 @import './cart.css';
 @import './register.css';
+@import './user-role.css';
 
 * {
     box-sizing: border-box;

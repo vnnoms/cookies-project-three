@@ -1,0 +1,320 @@
+
+:root {
+    --role-maroon: #702d3c;
+    --role-maroon-dark: #4d1d2a;
+    --role-cream: #f8f4ed;
+    --role-white: #fffefa;
+    --role-text: #302622;
+    --role-muted: #8a7d76;
+    --role-border: #eee5dc;
+    --role-shadow: 0 15px 45px rgb(48 38 34 / 8%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.users-page {
+    min-height: 100vh;
+    margin: 0;
+    padding: 48px 24px;
+    background:
+        radial-gradient(ellipse at top left, #efe0dc 0%, transparent 45%),
+        var(--role-cream);
+    color: var(--role-text);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Main card */
+
+.users-page .users-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 36px;
+    background: var(--role-white);
+    border: 1px solid var(--role-border);
+    border-radius: 20px;
+    box-shadow: var(--role-shadow);
+}
+
+/* Header */
+
+.users-page .users-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.users-page .users-eyebrow {
+    margin: 0 0 8px;
+    color: var(--role-muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.users-page h1 {
+    margin: 0;
+    color: var(--role-maroon);
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.users-page .users-description {
+    margin: 10px 0 0;
+    color: var(--role-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Summary */
+
+.users-page .users-summary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding: 17px 20px;
+    border: 1px solid var(--role-border);
+    border-radius: 12px;
+    background: #fcf7f2;
+}
+
+.users-page .summary-number {
+    color: var(--role-maroon);
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.users-page .summary-label {
+    color: var(--role-muted);
+    font-size: 13px;
+}
+
+/* Alerts */
+
+.users-page .notice {
+    margin-bottom: 22px;
+    padding: 14px 16px;
+    border: 1px solid #b7dfc4;
+    border-radius: 10px;
+    background: #effaf2;
+    color: #246b3b;
+    font-size: 14px;
+}
+
+.users-page .error-list {
+    margin-bottom: 22px;
+    padding: 14px 18px 14px 36px;
+    border: 1px solid #f0c4c4;
+    border-radius: 10px;
+    background: #fff1f1;
+    color: #a52b2b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* Table */
+
+.users-page .users-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--role-border);
+    border-radius: 12px;
+}
+
+.users-page .users-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.users-page .users-table thead {
+    background: var(--role-maroon);
+    color: white;
+}
+
+.users-page .users-table th {
+    padding: 17px 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.users-page .users-table td {
+    padding: 19px 20px;
+    border-bottom: 1px solid var(--role-border);
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.users-page .users-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.users-page .users-table tbody tr:hover {
+    background: #fcf7f2;
+}
+
+.users-page .users-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.users-page .user-id {
+    color: var(--role-muted);
+    font-weight: 700;
+}
+
+.users-page .username {
+    font-weight: 700;
+}
+
+/* Role badges */
+
+.users-page .role-badge {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.users-page .role-badge.customer {
+    background: #eaf2ff;
+    color: #2859a5;
+}
+
+.users-page .role-badge.staff {
+    background: #e8f6ec;
+    color: #267344;
+}
+
+.users-page .role-badge.admin {
+    background: #f7e8d2;
+    color: #80551c;
+}
+
+/* Role form */
+
+.users-page .role-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 235px;
+    margin: 0;
+}
+
+.users-page .role-select {
+    min-width: 120px;
+    padding: 11px 30px 11px 12px;
+    border: 1px solid #ded0c5;
+    border-radius: 8px;
+    outline: none;
+    background: white;
+    color: var(--role-text);
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.users-page .role-select:focus {
+    border-color: var(--role-maroon);
+    box-shadow: 0 0 0 3px rgb(112 45 60 / 12%);
+}
+
+/* Buttons */
+
+.users-page .role-button {
+    padding: 11px 15px;
+    border: none;
+    border-radius: 8px;
+    background: var(--role-maroon);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.users-page .role-button:hover {
+    transform: translateY(-1px);
+    background: var(--role-maroon-dark);
+}
+
+.users-page .role-button:focus-visible {
+    outline: 3px solid #c18a71;
+    outline-offset: 3px;
+}
+
+.users-page .protected-role {
+    color: var(--role-muted);
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* Footer */
+
+.users-page .users-footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--role-border);
+    color: var(--role-muted);
+    font-size: 12px;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .users-page {
+        padding: 24px 12px;
+    }
+
+    .users-page .users-container {
+        padding: 24px 18px;
+        border-radius: 15px;
+    }
+
+    .users-page .users-header {
+        align-items: flex-start;
+    }
+
+    .users-page .users-table th,
+    .users-page .users-table td {
+        padding: 14px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .users-page {
+        padding: 12px 8px;
+    }
+
+    .users-page .users-container {
+        padding: 20px 12px;
+    }
+
+    .users-page .users-header {
+        flex-direction: column;
+    }
+
+    .users-page .role-form {
+        min-width: 225px;
+    }
+
+    .users-page .users-footer {
+        flex-direction: column;
+    }
+}
