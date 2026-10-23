@@ -38,23 +38,36 @@ class AuthController extends Controller
         return view('register');
     }
 
-public function register(Request $request)
-{
-    $validated = $request->validate([
-        'username' => ['required', 'string', 'max:255', 'unique:users,username'],
-        'password' => ['required', 'string', 'min:8', 'confirmed'],
-    ]);
+    public function register(Request $request)
+    {
+        $validated = $request->validate([
+            'full_name' => ['required', 'string', 'max:255'],
+            'username' => [
+                'required',
+                'string',
+                'max:255',
+                'unique:users,username',
+            ],
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'confirmed',
+            ],
+        ]);
 
-    $user = User::create([
-        'username' => $validated['username'],
-        'password' => Hash::make($validated['password']),
-    ]);
+        $user = User::create([
+            'full_name' => $validated['full_name'],
+            'username' => $validated['username'],
+            'password' => Hash::make($validated['password']),
+            'role' => 'customer',
+        ]);
 
-    auth()->login($user);
-    $request->session()->regenerate();
+        auth()->login($user);
+        $request->session()->regenerate();
 
-    return redirect()->route('dashboard.customer');
-}
+        return redirect()->route('dashboard');
+    }
 
     // Dashboard page
     public function dashboard()

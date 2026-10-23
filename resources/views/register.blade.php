@@ -28,6 +28,22 @@
             <form action="{{ route('register') }}" method="POST" class="login-form">
                 @csrf
 
+                
+                <div class="form-group">
+                    <label for="full_name">Full Name</label>
+                    <input
+                        type="text"
+                        id="full_name"
+                        name="full_name"
+                        value="{{ old('full_name') }}"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        maxlength="255"
+                        required
+                    >
+                </div>
+
+
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input
