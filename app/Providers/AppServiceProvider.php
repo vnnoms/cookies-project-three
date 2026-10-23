@@ -26,17 +26,17 @@ class AppServiceProvider extends ServiceProvider
             return $user->role === 'admin';
         });
 
-        Gate::define('manage-products', function (User $user): bool {
-            return $user->role === 'admin';
-        });
+        Gate::define('manage-products', fn (User $user) =>
+            $user->role === 'admin'
+        );
 
-        Gate::define('adjust-stock', function (User $user): bool {
-            return in_array($user->role, ['staff', 'admin'], true);
-        });
+        Gate::define('adjust-stock', fn (User $user) =>
+            in_array($user->role, ['staff', 'admin'], true)
+        );
 
-        Gate::define('use-cart', function (User $user): bool {
-            return $user->role === 'customer';
-        });
+        Gate::define('use-cart', fn (User $user) =>
+            $user->role === 'customer'
+        );
 
         User::observe(UserObserver::class);
     }

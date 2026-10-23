@@ -53,13 +53,19 @@ public function register(Request $request)
     auth()->login($user);
     $request->session()->regenerate();
 
-    return redirect()->route('dashboard');
+    return redirect()->route('dashboard.customer');
 }
 
     // Dashboard page
     public function dashboard()
     {
-        return view('dashboard');
+        $role = auth()->user()->role;
+
+        if (in_array($role, ['admin', 'staff'], true)) {
+            return view('dashboard.admin');
+        }
+
+        return view('dashboard.customer');
     }
 
     // Logout page

@@ -20,14 +20,17 @@
             <a href="{{ route('dashboard') }}">Home</a>
             <a href="#kategori">Categories</a>
             <a href="{{ route('products.index') }}">Products</a>
+            @if (in_array(auth()->user()->role, ['admin', 'staff'], true))
+                <a href="{{ route('inventory.index') }}">
+                    Inventory.
+                </a>
+            @endif
         </div>
 
         </div>
 
         <div class="store-nav-actions">
             @auth
-                <p>Username: {{ Auth::user()->username }}</p>
-                <p>Role: {{ Auth::user()->role }}</p>
                 <span class="store-user">
                     Halo, {{ Auth::user()->full_name ?? Auth::user()->username }}
                 </span>

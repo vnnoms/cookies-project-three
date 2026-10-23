@@ -1,60 +1,58 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - Hade</title>
+    <title>Hade | Products</title>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="store-page">
 
     <nav class="store-navbar">
-        <a href="{{ route('products.index') }}" class="store-logo">
+        <a href="{{ route('dashboard') }}" class="store-logo">
             Hade<span>.</span>
         </a>
 
         <div class="store-nav-links">
             <a href="{{ route('dashboard') }}">Home</a>
-            <a href="#categories">Categories</a>
             <a href="{{ route('products.index') }}" class="active">Products</a>
+            <a href="{{ route('cart.index') }}">My Cart</a>
         </div>
 
-        <div class="store-nav-actions">
-            <a href="{{ route('cart.index') }}" class="store-cart-link">
-                <span class="store-cart-icon">🛒</span>
-                <span class="store-cart-count">{{ session('cart') ? count(session('cart')) : 0 }}</span>
-            </a>
-
-            @auth
-                <form action="{{ route('logout') }}" method="POST" class="store-registry-form">
-                    @csrf
-                    <button type="submit" class="store-registry-btn">Logout</button>
-                </form>
-            @endauth
+        <a href="{{ route('cart.index') }}" class="store-registry-btn">
+            View Cart
+        </a>
     </nav>
 
     <main class="store-products">
-        
-    @if (session('success'))
-        <p class="alert alert-success auto-dismiss">
-            {{ session('success') }}
-        </p>
-    @endif
-
-    @if (session('error'))
-        <p class="alert alert-error auto-dismiss">
-            {{ session('error') }}
-        </p>
-    @endif
         <h1>Our Products</h1>
-        <p>Find the perfect stationery for your everyday needs.</p>
 
-        <div class="store-product-grid">
+        <p>
+            Discover stationery essentials for your study, work,
+            and everyday creativity.
+        </p>
+
+        @if (session('success'))
+            <div class="store-notice">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="store-notice">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <section class="store-product-grid">
             @forelse ($items as $item)
                 <article class="store-product-card">
+
                     <div class="store-product-image">
-                        <span>{{ strtoupper(substr($item->name, 0, 1)) }}</span>
+                        <span>
+                            {{ strtoupper(substr($item->name, 0, 1)) }}
+                        </span>
                     </div>
 
                     <h2>{{ $item->name }}</h2>
@@ -63,29 +61,41 @@
                         Rp{{ number_format($item->price, 0, ',', '.') }}
                     </p>
 
-                    <p>Stock: {{ $item->stock }}</p>
+                    <p>
+                        @if ($item->stock > 0)
+                            Stock: {{ $item->stock }} units
+                        @else
+                            Out of stock
+                        @endif
+                    </p>
 
-                    <form action="{{ route('cart.add', $item->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" {{ $item->stock < 1 ? 'disabled' : '' }}>
-                            {{ $item->stock < 1 ? 'Out of Stock' : 'Add to Cart' }}
+                    @if ($item->stock > 0)
+                        <form
+                            action="{{ route('cart.add', $item->id) }}"
+                            method="POST"
+                        >
+                            @csrf
+
+                            <button type="submit">
+                                Add to Cart
+                            </button>
+                        </form>
+                    @else
+                        <button type="button" disabled>
+                            Out of Stock
                         </button>
-                    </form>
+                    @endif
+
                 </article>
             @empty
                 <p>No products available yet.</p>
             @endforelse
-        </div>
+        </section>
     </main>
 
     <footer class="store-footer">
-        <a href="{{ route('products.index') }}" class="store-logo">
-            Hade<span>.</span>
-        </a>
-
-        <p>Find what suits you.</p>
-
-        <span>© {{ date('Y') }} Hade. All rights reserved.</span>
+        <p>&copy; {{ date('Y') }} Hade Store</p>
+        <p>Made for your everyday needs.</p>
     </footer>
 
 </body>

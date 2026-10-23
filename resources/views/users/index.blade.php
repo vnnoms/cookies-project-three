@@ -23,6 +23,14 @@
                 <p class="users-description">
                     Accesibbility surveillance. 
                 </p>
+                
+                <p class="users-description">
+                    Manage user access and role assignments.
+                </p>
+
+                <a href="{{ route('dashboard') }}" class="return-button">
+                    &larr; Return to Dashboard
+                </a>
             </div>
         </header>
 
